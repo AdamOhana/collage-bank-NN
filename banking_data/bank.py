@@ -28,6 +28,6 @@ class Bank:
             return False
         acc = self.account_list[index]
         acc._balance += amount
-        acc._history += {"type": "deposit", "amount": amount,"month": self.month}
-
-
+        acc._history += {"type": "deposit", "amount": amount, "month": self.month}
+        return True
+    
