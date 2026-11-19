@@ -3,9 +3,10 @@ from account import Account
 
 class Bank:
     account_list: list[Account]
-
+    top: int
     def __init__(self, account_list: list[Account]):
-        self.accounts = account_list
+        self.account_list = account_list
+        self.top = len(account_list)
 
     def show_accounts(self):
         for i in range(len(self.account_list)):
@@ -16,3 +17,4 @@ class Bank:
             self.account_list.pop(index)
         else:
             print("Index out of bounds: no such account exists")
+
