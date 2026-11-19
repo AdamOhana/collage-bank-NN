@@ -1,10 +1,12 @@
 from account import Account
 
+OPERATIONS_PER_MONTH = 10
 
 class Bank:
     account_list: list[Account]
     top: int
-    month: int
+    month = 0
+    operations = 0
 
     def __init__(self, account_list: list[Account]):
         self.account_list = account_list
@@ -26,6 +28,7 @@ class Bank:
     def add_money(self, index: int, amount: float) -> bool:
         if not (0 <= index < self.top):
             return False
+        
         acc = self.account_list[index]
         acc.balance += amount
         acc.history.append({"type": "deposit", "amount": amount, "month": self.month})
@@ -34,6 +37,7 @@ class Bank:
     def remove_money(self, index: int, amount: float) -> bool:
         if not (0 <= index < self.top):
             return False
+        
         acc = self.account_list[index]
         acc.balance -= amount
         acc.history.append({"type": "withdrawal", "amount": amount, "month": self.month})
@@ -42,6 +46,7 @@ class Bank:
     def transfer_to_savings(self, index: int, amount: float) -> bool:
         if not (0 <= index < self.top):
             return False
+        
         acc = self.account_list[index]
         acc.savings += amount
         acc.balance -= amount
@@ -53,6 +58,7 @@ class Bank:
             return False
         if not (0 <= to_index < self.top):
             return False
+        
         acc1 = self.account_list[from_index]
         acc2 = self.account_list[to_index]
         acc1.balance -= amount
@@ -60,3 +66,16 @@ class Bank:
         acc1.history.append({"type": "deposit-transfer", "amount": amount, "month": self.month})
         acc2.history.append({"type": "withdrawal-transfer", "amount": amount, "month": self.month})
         return True
+
+    def inc_operations(self) -> None:
+        self.operations += 1
+        if self.operations % OPERATIONS_PER_MONTH == 0:
+            self.month += 1
+            self.trigger_savings()
+            self.trigger_interest()
+
+    def trigger_savings(self):
+        pass
+
+    def trigger_interest(self):
+        pass
