@@ -33,6 +33,8 @@ class Account:
         self._savings += amount
         return True
 
+    def update_history(self, action_type: str, amount: float, month: int):
+        self._history.append({"type": action_type, "amount": amount, "month": month})
 
     @property
     def balance(self):
