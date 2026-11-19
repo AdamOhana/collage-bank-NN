@@ -15,7 +15,7 @@ class Bank:
             print(f"index: {i}\n", self.account_list[i].to_dict(), sep="")
 
     def delete_account(self, index: int) -> bool:
-        if 0 < index < self.top:
+        if (0 <= index < self.top):
             self.account_list.pop(index)
             self.top -= 1
             return True
@@ -24,39 +24,39 @@ class Bank:
             return False
 
     def add_money(self, index: int, amount: float) -> bool:
-        if not (0 < index < self.top):
+        if not (0 <= index < self.top):
             return False
         acc = self.account_list[index]
         acc._balance += amount
-        acc._history += {"type": "deposit", "amount": amount, "month": self.month}
+        acc._history.append({"type": "deposit", "amount": amount, "month": self.month})
         return True
 
     def remove_money(self, index: int, amount: float) -> bool:
-        if not (0 < index < self.top):
+        if not (0 <= index < self.top):
             return False
         acc = self.account_list[index]
         acc._balance -= amount
-        acc._history += {"type": "withdrawal", "amount": amount, "month": self.month}
+        acc._history.append({"type": "withdrawal", "amount": amount, "month": self.month})
         return True
 
     def transfer_to_savings(self, index: int, amount: float) -> bool:
-        if not (0 < index < self.top):
+        if not (0 <= index < self.top):
             return False
         acc = self.account_list[index]
         acc._savings += amount
         acc._balance -= amount
-        acc._history += {"type": "saving", "amount": amount, "month": self.month}
+        acc._history.append({"type": "saving", "amount": amount, "month": self.month})
         return True
 
     def send_money(self, from_index: int, to_index: int, amount: float) -> bool:
-        if not (0 < from_index < self.top):
+        if not (0 <= from_index < self.top):
             return False
-        if not (0 < to_index < self.top):
+        if not (0 <= to_index < self.top):
             return False
         acc1 = self.account_list[from_index]
         acc2 = self.account_list[to_index]
         acc1._balance -= amount
         acc2._balance += amount
-        acc1._history += {"type": "deposit-transfer", "amount": amount, "month": self.month}
-        acc2._history += {"type": "withdrawal-transfer", "amount": amount, "month": self.month}
+        acc1._history.append({"type": "deposit-transfer", "amount": amount, "month": self.month})
+        acc2._history.append({"type": "withdrawal-transfer", "amount": amount, "month": self.month})
         return True
