@@ -15,6 +15,7 @@ class Bank:
     def delete_account(self, index: int):
         if 0 < index < self.top:
             self.account_list.pop(index)
+            self.top -= 1
         else:
             print("Index out of bounds: no such account exists")
 
