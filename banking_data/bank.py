@@ -35,6 +35,15 @@ class Bank:
         if not (0 < index < self.top):
             return False
         acc = self.account_list[index]
-        acc._balance += amount
+        acc._balance -= amount
         acc._history += {"type": "withdrawal", "amount": amount, "month": self.month}
+        return True
+
+    def transfer_to_savings(self, index: int, amount: float) -> bool:
+        if not (0 < index < self.top):
+            return False
+        acc = self.account_list[index]
+        acc._savings += amount
+        acc._balance -= amount
+        acc._history += {"type": "saving", "amount": amount, "month": self.month}
         return True
