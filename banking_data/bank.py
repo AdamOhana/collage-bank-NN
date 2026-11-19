@@ -1,4 +1,11 @@
 from account import Account
+from enum import Enum
+
+
+class OperationType(Enum):
+    DEPOSIT = "deposit"
+    WITHDRAWAL = "withdrawal"
+    SAVINGS = "savings"
 
 OPERATIONS_PER_MONTH = 10
 
