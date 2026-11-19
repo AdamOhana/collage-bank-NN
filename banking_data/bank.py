@@ -47,3 +47,16 @@ class Bank:
         acc._balance -= amount
         acc._history += {"type": "saving", "amount": amount, "month": self.month}
         return True
+
+    def send_money(self, from_index: int, to_index: int, amount: float) -> bool:
+        if not (0 < from_index < self.top):
+            return False
+        if not (0 < to_index < self.top):
+            return False
+        acc1 = self.account_list[from_index]
+        acc2 = self.account_list[to_index]
+        acc1._balance -= amount
+        acc2._balance += amount
+        acc1._history += {"type": "deposit-transfer", "amount": amount, "month": self.month}
+        acc2._history += {"type": "withdrawal-transfer", "amount": amount, "month": self.month}
+        return True
