@@ -9,11 +9,11 @@ class Bank:
         self.top = len(account_list)
 
     def show_accounts(self):
-        for i in range(len(self.account_list)):
+        for i in range(self.top):
             print(f"index: {i}\n", self.account_list[i].to_dict(), sep="")
 
     def delete_account(self, index: int):
-        if 0 < index < len(self.account_list):
+        if 0 < index < self.top:
             self.account_list.pop(index)
         else:
             print("Index out of bounds: no such account exists")
