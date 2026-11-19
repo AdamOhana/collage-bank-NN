@@ -1,6 +1,4 @@
-from enum import Enum
-
-from account import Account
+from banking_data.account import Account
 
 
 OPERATIONS_PER_MONTH = 10
