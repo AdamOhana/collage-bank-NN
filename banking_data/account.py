@@ -44,23 +44,3 @@ class Account:
 
     def update_history(self, action_type: str, amount: float, month: int):
         self._history.append({"type": action_type, "amount": amount, "month": month})
-
-    @property
-    def balance(self):
-        return self._balance
-
-    @balance.setter
-    def balance(self, value):
-        self._balance = value
-
-    @property
-    def history(self):
-        return self._history
-
-    @property
-    def savings(self):
-        return self._savings
-
-    @savings.setter
-    def savings(self, value):
-        self._savings = value
