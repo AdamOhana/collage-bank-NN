@@ -6,7 +6,7 @@ class Account:
     owner: str
     _balance: float
     _savings: float
-    _history: dict
+    _history: list
 
     def to_dict(self):
         return {
