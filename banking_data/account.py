@@ -16,6 +16,24 @@ class Account:
                 "history": self._history
         }
 
+
+    def deposit(self, amount: float):
+        self._balance += amount
+
+    def withdraw(self, amount: float) -> bool:
+        if amount > self._balance:
+            return False
+        self._balance -= amount
+        return True
+
+    def save(self, amount: float) -> bool:
+        if amount > self._balance:
+            return False
+        self._balance -= amount
+        self._savings += amount
+        return True
+
+
     @property
     def balance(self):
         return self._balance
