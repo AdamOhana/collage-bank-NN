@@ -22,7 +22,7 @@ class Account:
 
     @balance.setter
     def balance(self, value):
-        self.balance = value
+        self._balance = value
 
     @property
     def history(self):
