@@ -31,8 +31,9 @@ class Bank:
             return False
         
         acc = self.account_list[index]
-        acc.balance += amount
-        acc.history.append({"type": "deposit", "amount": amount, "month": self.month})
+
+        acc.deposit(amount, self.month)
+        self.inc_operations()
         return True
 
     def remove_money(self, index: int, amount: float) -> bool:
@@ -40,33 +41,35 @@ class Bank:
             return False
         
         acc = self.account_list[index]
-        acc.balance -= amount
-        acc.history.append({"type": "withdrawal", "amount": amount, "month": self.month})
-        return True
+
+        if acc.withdraw(amount, self.month):
+            self.inc_operations()
+            return True
+        return False
 
     def transfer_to_savings(self, index: int, amount: float) -> bool:
         if not (0 <= index < self.top):
             return False
         
         acc = self.account_list[index]
-        acc.savings += amount
-        acc.balance -= amount
-        acc.history.append({"type": "saving", "amount": amount, "month": self.month})
-        return True
+
+        if acc.save(amount, self.month):
+            self.inc_operations()
+            return True
+        return False
 
     def send_money(self, from_index: int, to_index: int, amount: float) -> bool:
-        if not (0 <= from_index < self.top):
+        if not (0 <= from_index < self.top) or not (0 <= to_index < self.top):
             return False
-        if not (0 <= to_index < self.top):
-            return False
-        
+
         acc1 = self.account_list[from_index]
         acc2 = self.account_list[to_index]
-        acc1.balance -= amount
-        acc2.balance += amount
-        acc1.history.append({"type": "deposit-transfer", "amount": amount, "month": self.month})
-        acc2.history.append({"type": "withdrawal-transfer", "amount": amount, "month": self.month})
-        return True
+
+        if acc1.withdraw(amount, self.month):
+            acc2.deposit(amount, self.month)
+            self.inc_operations()
+            return True
+        return False
 
     def inc_operations(self) -> None:
         self.operations += 1
