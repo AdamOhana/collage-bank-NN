@@ -25,9 +25,7 @@ class Bank:
             self.account_list.pop(index)
             self.top -= 1
             return True
-        else:
-            print("Index out of bounds: no such account exists")
-            return False
+        return False
 
     def add_money(self, index: int, amount: float) -> bool:
         if not (0 <= index < self.top):
