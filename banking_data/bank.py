@@ -1,7 +1,10 @@
+from enum import Enum
+
 from account import Account
 
 
 OPERATIONS_PER_MONTH = 10
+PERCENTAGE_PER_MONTH = 10
 
 class Bank:
     account_list: list[Account]
@@ -81,5 +84,6 @@ class Bank:
     def trigger_savings(self):
         pass
 
-    def trigger_interest(self):
-        pass
+    def trigger_interest(self) -> None:
+        for acc in self.account_list:
+            acc.savings_interest(PERCENTAGE_PER_MONTH, self.month)

@@ -6,6 +6,7 @@ class OperationType(StrEnum):
     DEPOSIT = "deposit"
     WITHDRAWAL = "withdrawal"
     SAVINGS = "savings"
+    INTEREST = "interest"
 
 @dataclass
 class Account:
@@ -44,3 +45,11 @@ class Account:
 
     def update_history(self, action_type: str, amount: float, month: int):
         self._history.append({"type": action_type, "amount": amount, "month": month})
+
+    def savings_interest(self, percentage: float, month: int) -> None:
+        amount = self._savings * percentage / 100
+        if amount <= 0:
+            return
+        self._savings += amount
+        self.update_history(OperationType.INTEREST, amount, month)
+
