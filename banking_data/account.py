@@ -4,14 +4,14 @@ from dataclasses import dataclass
 @dataclass
 class Account:
     owner: str
-    balance: float
-    savings: float
-    history: dict
+    _balance: float
+    _savings: float
+    _history: dict
 
     def to_dict(self):
         return {
                 "owner": self.owner,
-                "balance": self.balance,
-                "savings": self.savings,
-                "history": self.history
+                "balance": self._balance,
+                "savings": self._savings,
+                "history": self._history
         }
