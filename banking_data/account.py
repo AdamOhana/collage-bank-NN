@@ -1,8 +1,8 @@
 from dataclasses import dataclass
-from enum import Enum
+from enum import StrEnum
 
 
-class OperationType(Enum):
+class OperationType(StrEnum):
     DEPOSIT = "deposit"
     WITHDRAWAL = "withdrawal"
     SAVINGS = "savings"
@@ -23,20 +23,23 @@ class Account:
         }
 
 
-    def deposit(self, amount: float):
+    def deposit(self, amount: float, month: int) -> None:
         self._balance += amount
+        self.update_history(OperationType.DEPOSIT, amount, month)
 
-    def withdraw(self, amount: float) -> bool:
+    def withdraw(self, amount: float, month: int) -> bool:
         if amount > self._balance:
             return False
         self._balance -= amount
+        self.update_history(OperationType.WITHDRAWAL, amount, month)
         return True
 
-    def save(self, amount: float) -> bool:
+    def save(self, amount: float, month: int) -> bool:
         if amount > self._balance:
             return False
         self._balance -= amount
         self._savings += amount
+        self.update_history(OperationType.SAVINGS, amount, month)
         return True
 
     def update_history(self, action_type: str, amount: float, month: int):
