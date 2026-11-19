@@ -23,11 +23,18 @@ class Bank:
             print("Index out of bounds: no such account exists")
             return False
 
-    def add_money(self, index, amount) -> bool:
+    def add_money(self, index: int, amount: float) -> bool:
         if not (0 < index < self.top):
             return False
         acc = self.account_list[index]
         acc._balance += amount
         acc._history += {"type": "deposit", "amount": amount, "month": self.month}
         return True
-    
+
+    def remove_money(self, index: int, amount: float) -> bool:
+        if not (0 < index < self.top):
+            return False
+        acc = self.account_list[index]
+        acc._balance += amount
+        acc._history += {"type": "withdrawal", "amount": amount, "month": self.month}
+        return True
