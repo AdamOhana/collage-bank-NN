@@ -19,3 +19,9 @@ class ShowAccounts(Command):
     def execute(self, bank: Bank) -> None:
         bank.show_accounts()
 
+class DepositMoney(Command):
+    label: str = 'Deposit Money'
+    def execute(self, bank: Bank) -> None:
+        index = int(input('Account index: '))
+        amound = float(input('Amount: '))
+        bank.add_money(index, amound)
