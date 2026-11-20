@@ -45,3 +45,11 @@ class TransferToSavings(Command):
         index = int(input('Account index: '))
         amount = float(input('Amount: '))
         bank.transfer_to_savings(index, amount)
+
+class SendMoney(Command):
+    label: str = 'Send Money'
+    def execute(self, bank: Bank) -> None:
+        from_index = int(input('From account index: '))
+        to_index = int(input('To account index: '))
+        amount = float(input('Amount: '))
+        bank.send_money(from_index, to_index, amount)
