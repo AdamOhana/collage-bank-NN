@@ -31,3 +31,10 @@ class DeleteAccount(Command):
     def execute(self, bank: Bank) -> None:
         index = int(input('Account index: '))
         bank.delete_account(index)
+
+class WithdrawMoney(Command):
+    label: str = 'Withdraw Money'
+    def execute(self, bank: Bank) -> None:
+        index = int(input('Account index: '))
+        amound = float(input('Amount: '))
+        bank.add_money(index, amound)
