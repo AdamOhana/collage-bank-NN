@@ -37,4 +37,11 @@ class WithdrawMoney(Command):
     def execute(self, bank: Bank) -> None:
         index = int(input('Account index: '))
         amount = float(input('Amount: '))
-        bank.add_money(index, amount)
+        bank.remove_money(index, amount)
+
+class TransferToSavings(Command):
+    label: str = 'Transfer To Savings'
+    def execute(self, bank: Bank) -> None:
+        index = int(input('Account index: '))
+        amount = float(input('Amount: '))
+        bank.transfer_to_savings(index, amount)
