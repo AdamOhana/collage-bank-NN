@@ -8,3 +8,8 @@ class Command(ABC):
     @abstractmethod
     def execute(self, bank: Bank) -> None:
         pass
+
+class CreateAccount(Command):
+    label: str = 'Create Account'
+    def execute(self, bank: Bank) -> None:
+        bank.create_account()
