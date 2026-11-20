@@ -22,7 +22,7 @@ class Bank:
         acc = Account(owner)
         self.account_list.append(acc)
         print(f"New account {owner} created at index {self.top}")
-        self.top -= 1
+        self.top += 1
 
 
     def delete_account(self, index: int) -> bool:
