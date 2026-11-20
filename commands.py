@@ -23,8 +23,8 @@ class DepositMoney(Command):
     label: str = 'Deposit Money'
     def execute(self, bank: Bank) -> None:
         index = int(input('Account index: '))
-        amound = float(input('Amount: '))
-        bank.add_money(index, amound)
+        amount = float(input('Amount: '))
+        bank.add_money(index, amount)
 
 class DeleteAccount(Command):
     label: str = 'Delete Account'
@@ -36,5 +36,5 @@ class WithdrawMoney(Command):
     label: str = 'Withdraw Money'
     def execute(self, bank: Bank) -> None:
         index = int(input('Account index: '))
-        amound = float(input('Amount: '))
-        bank.add_money(index, amound)
+        amount = float(input('Amount: '))
+        bank.add_money(index, amount)
