@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from enum import StrEnum
 
 
@@ -11,11 +11,11 @@ class OperationType(StrEnum):
 @dataclass
 class Account:
     owner: str
-    _balance: float
-    _savings: float
-    _history: list
+    _balance: float = 0
+    _savings: float = 0
+    _history: list = field(default_factory=list)
 
-    def to_dict(self):
+    def to_dict(self) -> dict:
         return {
                 "owner": self.owner,
                 "balance": self._balance,
@@ -23,6 +23,10 @@ class Account:
                 "history": self._history
         }
 
+    def __post_init__(self) -> None:
+        if not self.owner.strip():
+            raise ValueError("Account name can't be empty")
+        self.owner = self.owner.strip()
 
     def deposit(self, amount: float, month: int) -> None:
         self._balance += amount

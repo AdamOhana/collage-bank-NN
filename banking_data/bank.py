@@ -18,6 +18,13 @@ class Bank:
         for i in range(self.top):
             print(f"index: {i}\n", self.account_list[i].to_dict(), sep="")
 
+    def create_account(self, owner: str) -> None:
+        acc = Account(owner)
+        self.account_list.append(acc)
+        print(f"New account {owner} created at index {self.top}")
+        self.top -= 1
+
+
     def delete_account(self, index: int) -> bool:
         if (0 <= index < self.top):
             self.account_list.pop(index)

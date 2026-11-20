@@ -12,7 +12,8 @@ class Command(ABC):
 class CreateAccount(Command):
     label: str = 'Create Account'
     def execute(self, bank: Bank) -> None:
-        bank.create_account()
+        owner = input('New account owner name: ')
+        bank.create_account(owner)
 
 class ShowAccounts(Command):
     label: str = 'Show Accounts'
