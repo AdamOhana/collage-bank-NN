@@ -25,3 +25,9 @@ class DepositMoney(Command):
         index = int(input('Account index: '))
         amound = float(input('Amount: '))
         bank.add_money(index, amound)
+
+class DeleteAccount(Command):
+    label: str = 'Delete Account'
+    def execute(self, bank: Bank) -> None:
+        index = int(input('Account index: '))
+        bank.delete_account(index)
