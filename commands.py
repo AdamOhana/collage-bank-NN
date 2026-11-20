@@ -13,3 +13,9 @@ class CreateAccount(Command):
     label: str = 'Create Account'
     def execute(self, bank: Bank) -> None:
         bank.create_account()
+
+class ShowAccounts(Command):
+    label: str = 'Show Accounts'
+    def execute(self, bank: Bank) -> None:
+        bank.show_accounts()
+
