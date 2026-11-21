@@ -8,3 +8,9 @@ class Menu:
         self.bank = bank
         self.commands = commands
 
+    def _print_menu(self) -> None:
+        print("========== BANK SYSTEM ==========")
+        for key, command in self.commands.items():
+            print(f"{key}: {command.label}")
+        print(f"{EXIT_KEY}: Exit")
+    
