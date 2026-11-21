@@ -8,3 +8,24 @@ from cli.menu import Menu
 from cli import commands as cmd
 
 
+bank = Bank([
+    Account("Dan", 120),
+    Account("Maya", 45, 10),
+    Account("Yoshi", 500, 200),
+    Account("Noa", 56),
+    Account("Avi", 20, 5),
+])
+
+commands = {
+    "1": cmd.CreateAccount(),
+    "2": cmd.ShowAccounts(),
+    "3": cmd.DeleteAccount(),
+    "4": cmd.DepositMoney(),
+    "5": cmd.WithdrawMoney(),
+    "6": cmd.TransferToSavings(),
+    "7": cmd.SendMoney()
+}
+
+menu = Menu(bank, commands)
+
+
