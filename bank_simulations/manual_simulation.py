@@ -29,4 +29,5 @@ commands = {
 menu = Menu(bank, commands)
 
 # Begin simulation
-
+if __name__ == "__main__":
+    menu.run()
