@@ -1,3 +1,6 @@
-from banking_data import  bank
-from cli import menu, commands
+from banking_data.bank import Bank
+from banking_data.account import Account
+from cli.menu import Menu
+from cli import commands as cmd
+
 
