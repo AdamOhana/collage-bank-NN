@@ -7,7 +7,7 @@ from banking_data.account import Account
 from cli.menu import Menu
 from cli import commands as cmd
 
-
+# The following are the default bank and menu fields
 bank = Bank([
     Account("Dan", 120),
     Account("Maya", 45, 10),
@@ -28,4 +28,5 @@ commands = {
 
 menu = Menu(bank, commands)
 
+# Begin simulation
 
