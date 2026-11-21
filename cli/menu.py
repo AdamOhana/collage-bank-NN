@@ -13,4 +13,20 @@ class Menu:
         for key, command in self.commands.items():
             print(f"{key}: {command.label}")
         print(f"{EXIT_KEY}: Exit")
-    
+
+    def run(self) -> None:
+        while True:
+            self._print_menu()
+            action = input("Enter your choice: ").strip()
+            if action == EXIT_KEY:
+                print("Bye!")
+                return
+
+            if action not in self.commands.keys():
+                print(f"Invalid choice. Please choose from the available options...")
+                continue
+
+            try:
+                self.commands[action].execute(self.bank)
+            except Exception as e:
+                print(e)
