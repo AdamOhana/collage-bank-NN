@@ -16,9 +16,18 @@ class Bank:
         if index < 0 or index >= len(self.account_list):
             raise IndexError(f'Invalid account index: {index}')
 
-    def show_accounts(self) -> None:
+    def show_accounts_dict(self) -> None:
         for i in range(len(self.account_list)):
-            print(f"index: {i}\n", self.account_list[i].to_dict(), sep="")
+            print(f"index: {i}\n", self.account_list[i].to_dict())
+
+    def show_accounts_normal(self) -> None:
+        for i, acc in enumerate(self.account_list):
+            print(f"[{i}]")
+
+    def show_account_history(self, index: int) -> None:
+        self._validate_index(index)
+        acc = self.account_list[index]
+        acc.show_history()
 
     def create_account(self, owner: str) -> None:
         acc = Account(owner)
