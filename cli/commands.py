@@ -16,14 +16,20 @@ class CreateAccount(Command):
         bank.create_account(owner)
 
 class ShowAccountsDict(Command):
-    label: str = 'Show Accounts'
+    label: str = 'Show Accounts in dictionary format'
     def execute(self, bank: Bank) -> None:
         bank.show_accounts_dict()
 
 class ShowAccountsNormal(Command):
-    label: str = 'Show Accounts'
+    label: str = 'Show Accounts in regular format'
     def execute(self, bank: Bank) -> None:
         bank.show_accounts_normal()
+
+class ShowAccountHistory(Command):
+    label: str = 'Show Account history'
+    def execute(self, bank: Bank) -> None:
+        index = int(input('Account index: '))
+        bank.show_account_history(index)
 
 class DepositMoney(Command):
     label: str = 'Deposit Money'
