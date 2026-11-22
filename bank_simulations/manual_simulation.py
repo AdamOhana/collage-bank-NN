@@ -25,7 +25,7 @@ commands = {
     "6": cmd.TransferToSavings(),
     "7": cmd.SendMoney(),
     "8": cmd.ShowAccountsDict(),
-    "9": cmd.ShowAccountsNormal()
+    "9": cmd.ShowAccountHistory(),
 }
 
 menu = Menu(bank, commands)

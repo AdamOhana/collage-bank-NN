@@ -22,12 +22,12 @@ class Bank:
 
     def show_accounts_normal(self) -> None:
         for i, acc in enumerate(self.account_list):
-            print(f"[{i}]")
+            print(f"[{i}] {acc.get_data()}")
 
     def show_account_history(self, index: int) -> None:
         self._validate_index(index)
         acc = self.account_list[index]
-        acc.show_history()
+        print(acc.get_history())
 
     def create_account(self, owner: str) -> None:
         acc = Account(owner)

@@ -23,10 +23,10 @@ class Account:
                 "history": list(self._history)
         }
 
-    def show_data(self) -> str:
+    def get_data(self) -> str:
         return  f"{self.owner:<10} balance: {self._balance:>8.2f}   savings: {self._savings:>8.2f}"
 
-    def show_history(self) -> str:
+    def get_history(self) -> str:
         if not self._history:
             return "No history yet."
         lines = []
