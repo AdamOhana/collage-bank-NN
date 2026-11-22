@@ -26,6 +26,16 @@ class Account:
     def show_data(self) -> str:
         return  f"{self.owner:<10} balance: {self._balance:>8.2f}   savings: {self._savings:>8.2f}"
 
+    def show_history(self) -> str:
+        if not self._history:
+            return "No history yet."
+        lines = []
+        for entry in self._history:
+            lines.append(
+                f"month {entry['month']:>2}: {entry['type']:<10} {entry['amount']:>8.2f}"
+            )
+        return "\n".join(lines)
+    
     def _require_positive(self, amount: float, action: str) -> None:
         if amount <= 0:
             raise ValueError(f"{action} amount can't be non positive")
