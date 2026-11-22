@@ -1,13 +1,16 @@
 from banking_data.account import Account
-
+from model.bank_brain import BankModel
 
 OPERATIONS_PER_MONTH = 10
 PERCENTAGE_PER_MONTH = 10
+PERCENTAGE_TO_SAVE = 10
+MIN_BALANCE = 50
 
 class Bank:
     account_list: list[Account]
     month = 0
     operations = 0
+    model = BankModel()
 
     def __init__(self, account_list: list[Account]):
         self.account_list = account_list
@@ -79,9 +82,23 @@ class Bank:
             self.month += 1
             self.trigger_savings()
             self.trigger_interest()
+            self.model.update_epsilon()
 
-    def trigger_savings(self):
-        pass
+    def trigger_savings(self) -> None:
+        for account in self.account_list:
+            action = self.model.pick_action(account)
+            can_save = not account.under_minimum(MIN_BALANCE, PERCENTAGE_TO_SAVE)
+            reward = 1 if (action == 1) == can_save else -1
+
+            self.model.train(account, action, reward)
+
+            if action == 1:
+                cut = account.get_savings_cut(PERCENTAGE_TO_SAVE)
+                if cut > 0:
+                    account.save(cut, self.month)
+
+            if self.month % 50 == 0:
+                print(f"account [{account.owner}] chose {action} with can_save being {can_save}, reward: {reward}")
 
     def trigger_interest(self) -> None:
         for acc in self.account_list:
