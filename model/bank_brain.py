@@ -22,9 +22,8 @@ class BankModel:
     def __init__(self):
         self.brain = BankBrain()
         self.optimizer = optim.Adam(self.brain.parameters(), lr=0.001)
-        self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-        self.epsilon = 0.9
-        self.epsilon_decay = 0.05
+        self.epsilon = 1.0
+        self.epsilon_decay = 0.995
 
     def get_state(self, account: Account) -> torch.Tensor:
         return torch.Tensor(account._balance/BALANCE_SCALE)
