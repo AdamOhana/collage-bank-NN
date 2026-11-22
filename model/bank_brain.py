@@ -30,11 +30,12 @@ class BankModel:
 
     def pick_action(self, account: Account) -> int:
         if random.random() < self.epsilon:
-            self.epsilon *= self.epsilon_decay
             return random.randint(0, 1)
         with torch.no_grad():
-            self.epsilon *= self.epsilon_decay
             return int(self.brain(self.get_state(account)).argmax())
+
+    def update_epsilon(self) -> None:
+        self.epsilon = self.epsilon * self.epsilon_decay
 
     def train(self,account: Account ,action: int, reward: int) -> None:
         state = self.get_state(account).unsqueeze(0)  # (1, 1)
