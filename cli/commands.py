@@ -20,6 +20,11 @@ class ShowAccountsDict(Command):
     def execute(self, bank: Bank) -> None:
         bank.show_accounts_dict()
 
+class ShowAccountsNormal(Command):
+    label: str = 'Show Accounts'
+    def execute(self, bank: Bank) -> None:
+        bank.show_accounts_normal()
+
 class DepositMoney(Command):
     label: str = 'Deposit Money'
     def execute(self, bank: Bank) -> None:
