@@ -18,3 +18,13 @@ def _save(bank: Bank) -> None:
 
 def _send(bank: Bank) -> None:
     bank.send_money(random.randint(0, len(bank.account_list)), random.randint(0, len(bank.account_list)), _random_amount())
+
+ACTIONS = [
+    _deposit,
+    _deposit,
+    _deposit,
+    _withdraw,
+    _save,
+    _send
+]
+
