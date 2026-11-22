@@ -26,7 +26,7 @@ class BankModel:
         self.epsilon_decay = 0.995
 
     def get_state(self, account: Account) -> torch.Tensor:
-        return torch.Tensor(account._balance/BALANCE_SCALE)
+        return torch.tensor([account._balance / BALANCE_SCALE], dtype=torch.float)
 
     def pick_action(self, account: Account) -> int:
         if random.random() < self.epsilon:
