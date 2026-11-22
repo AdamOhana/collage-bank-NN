@@ -28,3 +28,12 @@ ACTIONS = [
     _send
 ]
 
+def simulate(bank: Bank, months: int) -> None:
+    target_month = bank.month + months
+    while bank.month < target_month:
+        action = random.choice(ACTIONS)
+        try:
+            action(bank)
+        except (ValueError, IndexError):
+            pass
+
