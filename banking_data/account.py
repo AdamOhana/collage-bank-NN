@@ -23,6 +23,9 @@ class Account:
                 "history": list(self._history)
         }
 
+    def show_data(self) -> str:
+        return  f"{self.owner:<10} balance: {self._balance:>8.2f}   savings: {self._savings:>8.2f}"
+
     def _require_positive(self, amount: float, action: str) -> None:
         if amount <= 0:
             raise ValueError(f"{action} amount can't be non positive")
