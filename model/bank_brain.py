@@ -11,3 +11,11 @@ class BankBrain(nn.Module):
     def forward(self, x):
         x = self.fc1(x)
         return x
+
+class BankModel:
+    def __init__(self):
+        self.brain = BankBrain()
+        self.optimizer = optim.Adam(self.brain.parameters(), lr=0.001)
+        self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+
+    
