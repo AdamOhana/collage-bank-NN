@@ -6,17 +6,17 @@ import torch.optim as optim
 import torch.nn.functional as F
 from banking_data.account import Account
 
-MIN_BALANCE = 50
-BALANCE_SCALE = 1000
+BALANCE_SCALE = 100
 
 class BankBrain(nn.Module):
     def __init__(self):
         super(BankBrain, self).__init__()
-        self.fc1 = nn.Linear(1,2)
+        self.fc1 = nn.Linear(1,3)
+        self.fc2 = nn.Linear(3,2)
 
     def forward(self, x):
-        x = self.fc1(x)
-        return x
+        x = F.relu(self.fc1(x))
+        return self.fc2(x)
 
 class BankModel:
     def __init__(self):
