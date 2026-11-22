@@ -81,5 +81,5 @@ class Account:
     def get_savings_cut(self, percentage: float) -> float:
         return self._balance * percentage / 100
 
-    def under_minimum(self, min: float) -> bool:
-        return self._balance < min
+    def under_minimum(self, minimum: float, percentage_to_save: float) -> bool:
+        return self._balance * (1 - percentage_to_save / 100) < minimum
