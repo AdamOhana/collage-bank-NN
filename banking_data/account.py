@@ -78,3 +78,5 @@ class Account:
         self._savings += amount
         self._update_history(OperationType.INTEREST, amount, month)
 
+    def get_savings_cut(self, percentage: float):
+        return self._balance * percentage / 100
