@@ -15,10 +15,10 @@ class CreateAccount(Command):
         owner = input('New account owner name: ')
         bank.create_account(owner)
 
-class ShowAccounts(Command):
+class ShowAccountsDict(Command):
     label: str = 'Show Accounts'
     def execute(self, bank: Bank) -> None:
-        bank.show_accounts()
+        bank.show_accounts_dict()
 
 class DepositMoney(Command):
     label: str = 'Deposit Money'
