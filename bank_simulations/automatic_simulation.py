@@ -22,7 +22,6 @@ def _send(bank: Bank) -> None:
 ACTIONS = [
     _deposit,
     _deposit,
-    _deposit,
     _withdraw,
     _save,
     _send
@@ -37,3 +36,19 @@ def simulate(bank: Bank, months: int) -> None:
         except (ValueError, IndexError):
             pass
 
+
+def main() -> None:
+    bank = Bank([
+        Account("Dan", 120),
+        Account("Maya", 45, 10),
+        Account("Yoshi", 500, 200),
+        Account("Noa", 56),
+        Account("Avi", 20, 5),
+    ])
+    months = int(input("Months to simulate: "))
+    simulate(bank, months)
+    bank.show_accounts()
+    print(f"Month: {bank.month}, successful operations: {bank.operations}")
+
+if __name__ == "__main__":
+    main()
