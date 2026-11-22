@@ -18,12 +18,14 @@ bank = Bank([
 
 commands = {
     "1": cmd.CreateAccount(),
-    "2": cmd.ShowAccounts(),
+    "2": cmd.ShowAccountsNormal(),
     "3": cmd.DeleteAccount(),
     "4": cmd.DepositMoney(),
     "5": cmd.WithdrawMoney(),
     "6": cmd.TransferToSavings(),
-    "7": cmd.SendMoney()
+    "7": cmd.SendMoney(),
+    "8": cmd.ShowAccountsDict(),
+    "9": cmd.ShowAccountsNormal()
 }
 
 menu = Menu(bank, commands)
